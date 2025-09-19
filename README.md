@@ -171,8 +171,8 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 Para dúvidas ou problemas:
 - Abra uma [issue](https://github.com/VicorVasconcelos/API)
-- Entre em contato pelo e-mail: enade2025@cebraspe.org.br
-- Telefone: (61) 2109-5810
+- Entre em contato pelo e-mail: victor.vasconcelos@cebraspe.org.br ou victorvasconcellos28@gmail.com
+- Telefone: (61) 98438-5187
 
 ---
 
