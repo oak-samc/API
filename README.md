@@ -82,7 +82,7 @@ Exemplos:
 - **Tratamento de erros** com mensagens detalhadas
 - **Log colorido** para diferentes tipos de mensagem
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
 **Victor Vasconcelos** e **Samuel Almeida**
 - GitHub: [@VicorVasconcelos](https://github.com/VicorVasconcelos)
