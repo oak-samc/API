@@ -84,8 +84,9 @@ Exemplos:
 
 ## 👨‍💻 Autor
 
-**Victor Vasconcelos**
+**Victor Vasconcelos** e **Samuel Almeida**
 - GitHub: [@VicorVasconcelos](https://github.com/VicorVasconcelos)
+- GitHub: [@oak-samc](https://github.com/oak-samc)
 
 ## 📞 Suporte
 
