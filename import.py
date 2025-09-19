@@ -15,7 +15,7 @@ from tkinter import messagebox, filedialog
 import threading
  
 # E-mails para cópia (CC)
-copia_emails = ["alinemilacki@gmail.com", "yasmin.oliveira@cebraspe.org.br", "enade2025@cebraspe.org.br"]
+copia_emails = ["email1@exemplo.com", "email2@exemplo.com", "email3@exemplo.com"]
  
 # === TEXTO DO E-MAIL (HTML) ===
 corpo_email_html = """

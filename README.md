@@ -6,21 +6,30 @@ Este projeto é um sistema de automação desenvolvido em Python para facilitar 
 
 ## 🚀 Funcionalidades
 
+- **Interface gráfica intuitiva** com tkinter para facilitar o uso
+- **Seleção de pasta via GUI** para localizar arquivos PDF
 - **Envio automatizado de e-mails** via Microsoft Outlook
-- **Processamento inteligente de PDFs** com mapeamento por cidade
+- **Processamento inteligente de PDFs** com mapeamento automático por cidade
 - **Template HTML personalizado** para validação de dados
 - **Normalização de texto** para compatibilidade de nomes de cidades
-- **Cópia para múltiplos destinatários** (CC)
-- **Interface interativa** no terminal
+- **Cópia para múltiplos destinatários** (CC) editável
+- **Log em tempo real** do processo de envio na interface
+- **Validação de campos** obrigatórios antes do envio
 - **Validação de anexos** antes do envio
+- **Processamento em background** para não travar a interface
+- **Tratamento de erros** com mensagens informativas
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python 3.x**
+- **tkinter** - Interface gráfica do usuário (GUI)
 - **win32com.client** - Integração com Microsoft Outlook
 - **pathlib** - Manipulação de caminhos de arquivos
 - **unicodedata** - Normalização de texto
+- **threading** - Processamento em background
 - **re** - Expressões regulares
+- **os** - Operações do sistema operacional
+- **time** - Controle de tempo
 
 ## 📦 Requisitos
 
@@ -29,6 +38,8 @@ Este projeto é um sistema de automação desenvolvido em Python para facilitar 
 pip install pywin32
 ```
 
+**Nota**: O `tkinter` já vem incluído na instalação padrão do Python.
+
 ### Requisitos do Sistema
 - Windows (obrigatório para integração com Outlook)
 - Microsoft Outlook instalado e configurado
@@ -36,15 +47,8 @@ pip install pywin32
 
 ## ⚙️ Configuração
 
-### 1. Configuração da Pasta de PDFs
-Edite a variável `caminho_pasta_pdfs` no arquivo `import.py`:
-
-```python
-caminho_pasta_pdfs = Path(r"C:\caminho\para\sua\pasta\de\pdfs")
-```
-
-### 2. Configuração de E-mails em Cópia
-Edite a lista `copia_emails` para definir os destinatários em cópia:
+### 1. Configuração de E-mails em Cópia
+Edite a lista `copia_emails` no arquivo `import.py` para definir os destinatários em cópia:
 
 ```python
 copia_emails = [
@@ -54,7 +58,7 @@ copia_emails = [
 ]
 ```
 
-### 3. Padrão de Nomenclatura dos Arquivos PDF
+### 2. Padrão de Nomenclatura dos Arquivos PDF
 Os arquivos PDF devem seguir o padrão:
 ```
 qualquer_nome_CIDADE.pdf
@@ -72,18 +76,23 @@ Exemplo:
    cd API
    ```
 
-2. **Configure as variáveis** conforme descrito na seção de Configuração
+2. **Instale as dependências**
+   ```bash
+   pip install pywin32
+   ```
 
 3. **Execute o script**
    ```bash
    python import.py
    ```
 
-4. **Siga as instruções interativas**:
-   - Digite o e-mail do destinatário
-   - Digite o nome da cidade correspondente ao PDF
-   - O sistema encontrará automaticamente o arquivo correto
-   - Digite `sair` para finalizar
+4. **Use a interface gráfica**:
+   - **Selecione a pasta de PDFs**: Clique em "Selecionar Pasta" para escolher onde estão os arquivos PDF
+   - **Digite o e-mail do destinatário**: Informe o e-mail de quem receberá a mensagem
+   - **Configure os e-mails de cópia (CC)**: Os e-mails padrão já estarão preenchidos, mas você pode editá-los
+   - **Digite o nome da cidade**: Informe a cidade correspondente ao PDF que será anexado
+   - **Clique em "Enviar E-mail"**: O sistema encontrará automaticamente o arquivo correto e enviará
+   - **Acompanhe o processo**: Use o log em tempo real para ver o status do envio
 
 ## 📧 Template de E-mail
 
@@ -99,10 +108,18 @@ O sistema utiliza um template HTML completo que inclui:
   - Agrupamento de blocos
   - Quantitativo de salas por bloco
   - Acessibilidade para atendimento especializado
-- **Prazo para resposta**: 19 de setembro de 2025, às 09:00h
+- **Prazo para resposta**: 20 de setembro de 2025, às 09:00h
 - **Contatos para dúvidas**
 
 ## 🔧 Funcionalidades Técnicas
+
+### Interface Gráfica
+- **Janela principal** com layout organizado e intuitivo
+- **Seleção de pasta** via dialog nativo do sistema
+- **Campos de entrada** validados antes do envio
+- **Log em tempo real** com cores para diferentes tipos de mensagem
+- **Processamento em background** usando threading para não travar a interface
+- **Mensagens de feedback** usando messageboxes do tkinter
 
 ### Normalização de Texto
 O sistema remove acentos e converte para maiúsculas para garantir compatibilidade:
@@ -124,31 +141,49 @@ Verifica se o arquivo existe antes de enviar o e-mail, evitando envios sem anexo
 
 ## 🛡️ Tratamento de Erros
 
-- **Validação de e-mails** inválidos
-- **Verificação de existência** de arquivos PDF
-- **Tratamento de exceções** do Outlook
-- **Mensagens informativas** para o usuário
+- **Validação de e-mails** inválidos com messageboxes informativos
+- **Verificação de existência** de arquivos PDF antes do envio
+- **Validação de campos obrigatórios** na interface gráfica
+- **Tratamento de exceções** do Outlook com mensagens detalhadas
+- **Log colorido** para diferentes tipos de mensagem (sucesso, erro, informação)
+- **Feedback visual** em tempo real durante o processamento
 
 ## 📝 Exemplo de Uso
 
+### Interface Gráfica do Sistema
+
+Ao executar o programa, uma janela intitulada **"Automatizador de E-mails ENADE - v2.0"** será aberta com os seguintes campos:
+
 ```
-🚀 Iniciando o envio de e-mails de forma automatizada...
+📂 Selecione a pasta com os PDFs: [Selecionar Pasta]
+Nenhuma pasta selecionada
 
-📂 3 arquivos PDF encontrados na pasta 'C:\PDFs\ENADE':
-✅ Arquivo: 'distribuicao_BRASILIA.pdf' -> Cidade extraída: 'BRASILIA'
-✅ Arquivo: 'distribuicao_SAO_PAULO.pdf' -> Cidade extraída: 'SAO PAULO'
-✅ Arquivo: 'distribuicao_RIO_DE_JANEIRO.pdf' -> Cidade extraída: 'RIO DE JANEIRO'
+E-mail do Destinatário: [Campo de texto]
 
-🧭 Cidades disponíveis para envio:
-- BRASILIA
-- RIO DE JANEIRO
-- SAO PAULO
+E-mail(s) para Cópia (CC): [Campo pré-preenchido com os e-mails padrão]
 
-Digite o e-mail do destinatário: coordenador@exemplo.com
-Digite o nome da cidade para o anexo: Brasília
+Nome da Cidade: [Campo de texto]
 
-✅ E-mail enviado com sucesso para: coordenador@exemplo.com
+[Enviar E-mail]
+
+Log do Processo:
+📂 Pasta selecionada. Mapeando arquivos PDF...
+✅ 3 arquivos PDF encontrados e mapeados.
+🚀 Iniciando envio para: coordenador@exemplo.com
+Assunto: ENADE_2025_DISTRIBUIÇÃO - Brasília
+📎 Anexo adicionado: C:\PDFs\distribuicao_BRASILIA.pdf
+✅ E-mail enviado para: coordenador@exemplo.com
 ```
+
+### Fluxo de Trabalho
+1. O usuário executa `python import.py`
+2. A interface gráfica é aberta
+3. O usuário clica em "Selecionar Pasta" e escolhe a pasta com os PDFs
+4. O sistema mapeia automaticamente todos os arquivos PDF encontrados
+5. O usuário preenche o e-mail do destinatário e nome da cidade
+6. O usuário clica em "Enviar E-mail"
+7. O sistema processa em background e mostra o progresso no log
+8. Uma mensagem de sucesso ou erro é exibida
 
 ## 🤝 Contribuição
 
