@@ -2,183 +2,85 @@
 
 ## 📋 Descrição
 
-Este projeto é um sistema de automação desenvolvido em Python para facilitar o envio de e-mails em massa com anexos PDF para coordenadores estaduais e de local do Exame Nacional de Desempenho dos Estudantes (ENADE 2025). O sistema automatiza o processo de distribuição de salas por município, permitindo que os coordenadores validem as informações de ensalamento.
+Sistema desenvolvido em Python para automatizar o envio de e-mails em massa com anexos PDF para coordenadores do ENADE 2025. Facilita a distribuição de salas por município com interface gráfica intuitiva e integração direta com Microsoft Outlook.
 
-## 🚀 Funcionalidades
+## 🚀 Principais Funcionalidades
 
-- **Interface gráfica intuitiva** com tkinter para facilitar o uso
+- **Interface gráfica intuitiva** com tkinter
 - **Seleção de pasta via GUI** para localizar arquivos PDF
-- **Envio automatizado de e-mails** via Microsoft Outlook
-- **Processamento inteligente de PDFs** com mapeamento automático por cidade
-- **Template HTML personalizado** para validação de dados
-- **Normalização de texto** para compatibilidade de nomes de cidades
-- **Cópia para múltiplos destinatários** (CC) editável
-- **Log em tempo real** do processo de envio na interface
-- **Validação de campos** obrigatórios antes do envio
-- **Validação de anexos** antes do envio
-- **Processamento em background** para não travar a interface
-- **Tratamento de erros** com mensagens informativas
+- **Envio automatizado** via Microsoft Outlook
+- **Mapeamento automático de PDFs** por cidade
+- **Template HTML personalizado** para validação
+- **Log em tempo real** do processo de envio
+- **Processamento em background** sem travar a interface
+- **Validação completa** de campos e anexos
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Python 3.x**
-- **tkinter** - Interface gráfica do usuário (GUI)
-- **win32com.client** - Integração com Microsoft Outlook
-- **pathlib** - Manipulação de caminhos de arquivos
-- **unicodedata** - Normalização de texto
+- **Python 3.x** - Linguagem principal
+- **tkinter** - Interface gráfica
+- **pywin32** - Integração com Outlook
 - **threading** - Processamento em background
-- **re** - Expressões regulares
-- **os** - Operações do sistema operacional
-- **time** - Controle de tempo
+- **pathlib, unicodedata** - Manipulação de arquivos e texto
 
 ## 📦 Requisitos
 
-### Dependências Python
-```bash
-pip install pywin32
-```
-
-**Nota**: O `tkinter` já vem incluído na instalação padrão do Python.
-
-### Requisitos do Sistema
+### Sistema
 - Windows (obrigatório para integração com Outlook)
 - Microsoft Outlook instalado e configurado
 - Python 3.6 ou superior
 
+### Dependências
+```bash
+pip install pywin32
+```
+
 ## ⚙️ Configuração
 
-### 1. Configuração de E-mails em Cópia
-Edite a lista `copia_emails` no arquivo `import.py` para definir os destinatários em cópia:
-
+### 1. E-mails de Cópia
+Edite a lista `copia_emails` no arquivo `import.py`:
 ```python
 copia_emails = [
     "email1@exemplo.com",
-    "email2@exemplo.com",
-    "email3@exemplo.com"
+    "email2@exemplo.com"
 ]
 ```
 
-### 2. Padrão de Nomenclatura dos Arquivos PDF
-Os arquivos PDF devem seguir o padrão:
-```
-qualquer_nome_CIDADE.pdf
-```
+### 2. Padrão dos PDFs
+Os arquivos devem seguir o formato: `qualquer_nome_CIDADE.pdf`
 
-Exemplo:
+Exemplos:
 - `distribuicao_salas_SAO_PAULO.pdf`
 - `enade_BRASILIA.pdf`
 
 ## 🎯 Como Usar
 
-1. **Clone ou baixe o projeto**
+1. **Instalação**
    ```bash
    git clone https://github.com/VicorVasconcelos/API.git
    cd API
-   ```
-
-2. **Instale as dependências**
-   ```bash
    pip install pywin32
    ```
 
-3. **Execute o script**
+2. **Execução**
    ```bash
    python import.py
    ```
 
-4. **Use a interface gráfica**:
-   - **Selecione a pasta de PDFs**: Clique em "Selecionar Pasta" para escolher onde estão os arquivos PDF
-   - **Digite o e-mail do destinatário**: Informe o e-mail de quem receberá a mensagem
-   - **Configure os e-mails de cópia (CC)**: Os e-mails padrão já estarão preenchidos, mas você pode editá-los
-   - **Digite o nome da cidade**: Informe a cidade correspondente ao PDF que será anexado
-   - **Clique em "Enviar E-mail"**: O sistema encontrará automaticamente o arquivo correto e enviará
-   - **Acompanhe o processo**: Use o log em tempo real para ver o status do envio
+3. **Interface**
+   - Selecione a pasta com os PDFs
+   - Digite o e-mail do destinatário
+   - Configure os e-mails de cópia (CC)
+   - Informe o nome da cidade
+   - Clique em "Enviar E-mail"
+   - Acompanhe o progresso no log
 
-## 🔧 Funcionalidades Técnicas
+## 🛡️ Funcionalidades Técnicas
 
-### Interface Gráfica
-- **Janela principal** com layout organizado e intuitivo
-- **Seleção de pasta** via dialog nativo do sistema
-- **Campos de entrada** validados antes do envio
-- **Log em tempo real** com cores para diferentes tipos de mensagem
-- **Processamento em background** usando threading para não travar a interface
-- **Mensagens de feedback** usando messageboxes do tkinter
-
-### Normalização de Texto
-O sistema remove acentos e converte para maiúsculas para garantir compatibilidade:
-```python
-def normalizar_texto(texto):
-    texto = unicodedata.normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII')
-    return texto.strip().upper()
-```
-
-### Mapeamento de PDFs
-Extrai automaticamente o nome da cidade do arquivo PDF e cria um mapeamento:
-```
-BRASILIA.pdf → "BRASILIA"
-sao_paulo.pdf → "SAO PAULO"
-```
-
-### Validação de Anexos
-Verifica se o arquivo existe antes de enviar o e-mail, evitando envios sem anexo.
-
-## 🛡️ Tratamento de Erros
-
-- **Validação de e-mails** inválidos com messageboxes informativos
-- **Verificação de existência** de arquivos PDF antes do envio
-- **Validação de campos obrigatórios** na interface gráfica
-- **Tratamento de exceções** do Outlook com mensagens detalhadas
-- **Log colorido** para diferentes tipos de mensagem (sucesso, erro, informação)
-- **Feedback visual** em tempo real durante o processamento
-
-## 📝 Exemplo de Uso
-
-### Interface Gráfica do Sistema
-
-Ao executar o programa, uma janela intitulada **"Automatizador de E-mails ENADE - v2.0"** será aberta com os seguintes campos:
-
-```
-📂 Selecione a pasta com os PDFs: [Selecionar Pasta]
-Nenhuma pasta selecionada
-
-E-mail do Destinatário: [Campo de texto]
-
-E-mail(s) para Cópia (CC): [Campo pré-preenchido com os e-mails padrão]
-
-Nome da Cidade: [Campo de texto]
-
-[Enviar E-mail]
-
-Log do Processo:
-📂 Pasta selecionada. Mapeando arquivos PDF...
-✅ 3 arquivos PDF encontrados e mapeados.
-🚀 Iniciando envio para: coordenador@exemplo.com
-Assunto: ENADE_2025_DISTRIBUIÇÃO - Brasília
-📎 Anexo adicionado: C:\PDFs\distribuicao_BRASILIA.pdf
-✅ E-mail enviado para: coordenador@exemplo.com
-```
-
-### Fluxo de Trabalho
-1. O usuário executa `python import.py`
-2. A interface gráfica é aberta
-3. O usuário clica em "Selecionar Pasta" e escolhe a pasta com os PDFs
-4. O sistema mapeia automaticamente todos os arquivos PDF encontrados
-5. O usuário preenche o e-mail do destinatário e nome da cidade
-6. O usuário clica em "Enviar E-mail"
-7. O sistema processa em background e mostra o progresso no log
-8. Uma mensagem de sucesso ou erro é exibida
-
-## 🤝 Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+- **Normalização de texto** para compatibilidade de nomes
+- **Validação de anexos** antes do envio
+- **Tratamento de erros** com mensagens detalhadas
+- **Log colorido** para diferentes tipos de mensagem
 
 ## 👨‍💻 Autor
 
@@ -187,11 +89,10 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 📞 Suporte
 
-Para dúvidas ou problemas:
-- Abra uma [issue](https://github.com/VicorVasconcelos/API)
-- Entre em contato pelo e-mail: victor.vasconcelos@cebraspe.org.br ou victorvasconcellos28@gmail.com
+- E-mail: victor.vasconcelos@cebraspe.org.br
 - Telefone: (61) 98438-5187
+- Issues: [GitHub Issues](https://github.com/VicorVasconcelos/API/issues)
 
 ---
 
-**⚠️ Nota Importante**: Este sistema foi desenvolvido especificamente para o ENADE 2025 e requer Microsoft Outlook instalado no Windows para funcionar corretamente.
+**⚠️ Nota**: Sistema desenvolvido especificamente para o ENADE 2025. Requer Microsoft Outlook no Windows.
