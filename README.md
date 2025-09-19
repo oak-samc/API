@@ -94,23 +94,6 @@ Exemplo:
    - **Clique em "Enviar E-mail"**: O sistema encontrará automaticamente o arquivo correto e enviará
    - **Acompanhe o processo**: Use o log em tempo real para ver o status do envio
 
-## 📧 Template de E-mail
-
-O sistema utiliza um template HTML completo que inclui:
-
-- **Saudação personalizada** para coordenadores
-- **Informações sobre o ENADE 2025** (data: 23 de novembro de 2025)
-- **Tabela de validação** com campos para confirmação de:
-  - Nome da instituição
-  - Endereço completo
-  - Número de salas e andares
-  - Capacidade de candidatos
-  - Agrupamento de blocos
-  - Quantitativo de salas por bloco
-  - Acessibilidade para atendimento especializado
-- **Prazo para resposta**: 20 de setembro de 2025, às 09:00h
-- **Contatos para dúvidas**
-
 ## 🔧 Funcionalidades Técnicas
 
 ### Interface Gráfica
