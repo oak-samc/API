@@ -1,8 +1,8 @@
-# Sistema de Automação de E-mails ENADE 2025
+# Sistema de Automação de E-mails
 
 ## 📋 Descrição
 
-Sistema desenvolvido em Python para automatizar o envio de e-mails em massa com anexos PDF para coordenadores do ENADE 2025. Facilita a distribuição de salas por município com interface gráfica intuitiva e integração direta com Microsoft Outlook.
+Sistema desenvolvido em Python para automatizar o envio de e-mails em massa com anexos PDF. Com interface gráfica intuitiva e integração direta com Microsoft Outlook.
 
 ## 🚀 Principais Funcionalidades
 
